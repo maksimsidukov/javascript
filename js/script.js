@@ -1,55 +1,12 @@
 //Задание №1
-function prostoe(num) {
-	var i = 2;
-	if(num == 1 ||num == 0){
-		i++;
-		return false;
-	}
-	if(num == 2){
-		i++;
-		return true;
-	}
-	while (i<num){
-		if(num%i != 0){
-			i++;
-			continue;
-		}
-		else{
-			return false;
-		}
-	}
-	return true;
-}
+var a = 1, b = 1, c, d;
+c = ++a; alert(c);           // 2, т.к. сначала а увеличивается на 1, а потом это присваиватся в с
+d = b++; alert(d);           // 1, а тут в d присвается b, а потом b увеличивается на 1
+c = (2+ ++a); alert(c);      // 5, после 2 строки а уже стало равно 2, а тут а увеличилось еще на 1, стало равно 3, и прибавилось к 2м
+d = (2+ b++); alert(d);      // 4, 2+2, а потом b увеличить на 1, тут b уже равно 3
+alert(a);                    // 3
+alert(b);                    // 3
 
-var idx = 0;
-while (idx < 100){
-	if(prostoe(idx)){
-		document.write(idx+'<br>')
-		idx++;
-	}
-	else{
-		idx++;
-	}
-}
 //Задание №2
-function summ(mas){
-	var sum = 0;
-	for(num of mas){
-		sum += num;
-	}
-	return sum;
-}
-var mas = []
-for(var i = 0;i<100;i++){
-	mas[i] = parseInt(Math.random()*9500+500);
-}
-alert(summ(mas))
-//Задание №3
-for(var x = 0; x<10; console.log(x++)){
-}
-//Задание №4
-var str = 'x';
-for(var y = 0;y<20;y++){
-	console.log(str);
-	str+='x'
-}
+var a = 2;
+var x = 1 + (a *= 2);        //5,т.к. 1 + (2*2)
