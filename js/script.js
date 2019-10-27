@@ -1,55 +1,57 @@
 //Задание №1
-function prostoe(num) {
-	var i = 2;
-	if(num == 1 ||num == 0){
-		i++;
-		return false;
+var obj = {};
+function f(num){
+	var nums = String(num).split('');
+	while (nums.length < 3){
+		nums.unshift(0)
 	}
-	if(num == 2){
-		i++;
-		return true;
-	}
-	while (i<num){
-		if(num%i != 0){
-			i++;
-			continue;
-		}
-		else{
-			return false;
-		}
-	}
-	return true;
+	obj.ed = nums[2];
+	obj.des = nums[1];
+	obj.sot = nums[0];
+	return obj
 }
 
-var idx = 0;
-while (idx < 100){
-	if(prostoe(idx)){
-		document.write(idx+'<br>')
-		idx++;
+var x = +prompt('Введите число');
+if(x>0 && x < 1000){
+	alert('Сотни - '+f(x).sot+' ,десятки - '+f(x).des+' ,еденицы - '+f(x).ed)
+}
+else{
+	alert('Число не корректно!')
+}
+//Задание 2
+var game = true;
+var garantWin = 0;
+win = 0;
+for (quest of questions){
+	if(game === false){
+		break
 	}
-	else{
-		idx++;
-	}
-}
-//Задание №2
-function summ(mas){
-	var sum = 0;
-	for(num of mas){
-		sum += num;
-	}
-	return sum;
-}
-var mas = []
-for(var i = 0;i<100;i++){
-	mas[i] = parseInt(Math.random()*9500+500);
-}
-alert(summ(mas))
-//Задание №3
-for(var x = 0; x<10; console.log(x++)){
-}
-//Задание №4
-var str = 'x';
-for(var y = 0;y<20;y++){
-	console.log(str);
-	str+='x'
+	do {
+		var correct = true;
+		var answer = +prompt('Вопрос: '+quest.question+'\nОтветы:\n  1. '+quest.answer_1+'\n  2. '+quest.answer_2+'\n  3. '+quest.answer_3+'\n  4. '+quest.answer_4+'\n-1. Выйти из игры!\nВаш ответ:');
+		if (answer === -1){
+			alert('Вы выграли '+win+' рублей!\nПоздравляем!');
+			break
+		}
+		else if (answer<1 || answer>4){
+			alert('Ошибка ввода!');
+			correct = false
+		}
+		else if(answer === quest.correctAnswer){
+			if(quest.price[0]){
+				alert('Поздравляем! Вы дошли до несгараемой суммы '+quest.price[1]+' рублей.\nЧто будем делать?\n1. Рискнуть и продолжить.\n2. Забрать деньги и выйти.');
+				garantWin = quest.price[1];
+			}
+			else{
+				alert('Поздраляем! Вы правильно отвеили на вопрос! Сумма вашего выгрыша '+quest.price[1]+' рублей!\nНажмите ОК что бы продолжить!');
+				win = quest.price[1]
+			}
+		}
+		else{
+			alert('Ответ не верный. Вы выграли ' + garantWin+' рублей!');
+			game = false;
+			break
+		}
+	}while(!correct)
+
 }
