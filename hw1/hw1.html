@@ -1,0 +1,55 @@
+//Решил попрактиковаться и все сделать сам полностью на JS(для реального проекта массив можно создавать из БД, и тогда все вообще будет рабоать само)
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Задание 1</title>
+	<style>
+		body{
+			width: 960px;
+			margin: 0 auto;
+			text-align: center;
+		}
+		.smallImg{
+			float: left;
+			width: 30%;
+			padding: 10px;
+		}
+
+		.bigImg{
+			width: 100%;
+		}
+	</style>
+</head>
+<body>
+	<div id="big"></div>
+	<div id='small'></div>
+</body>
+</html>
+<script>
+	var img = [img1={small:'img/small/1.jpg',big:'img/big/1.jpg'}, img2={small:'img/small/2.jpg',big:'img/big/2.jpg'},img3={small:'img/small/3.jpg',big:undefined}];
+	var divSmall = document.getElementById('small');
+	var id = 0;
+	for (i of img){
+		var small = document.createElement('div');
+		small.className = 'smallImg';
+		small.innerHTML = '<img src="'+i.small+'" id ="'+id+'"></img>';
+		divSmall.appendChild(small);
+		small.addEventListener('click', f);
+		id++;
+	}
+
+	function f(e) {
+		var elemId = e.target.id;
+		var divBig = document.getElementById('big');
+		divBig.innerHTML = '';
+		if (img[elemId].big === undefined){
+			alert('У картинки '+(Number(elemId) + 1)+' отсутствует большая картинка!');
+			return;
+		}
+		else{
+			divBig.innerHTML = '<img src="'+img[elemId].big+'"></img>';
+		}
+	}
+</script>
